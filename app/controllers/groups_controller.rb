@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.all
-  	#@groups = Group.where(user_id: @current_user_id)
+    #@groups = Group.all
+  	#@groups = Group.group_users.where(user_id: @current_user.id)
+    @groups = @current_user.groups
   end
 
   def new
