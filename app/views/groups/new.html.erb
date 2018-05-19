@@ -1,0 +1,21 @@
+<div class="main groups-new">
+  <div class="container">
+    <div class="form-heading">新規グループ作成</div>
+    <div class="form groups-form">
+      <div class="form-body">
+        <% @group.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+        
+        <%= form_tag("/groups/create") do %>
+          <p>グループ名</p>
+          <input name="name" value="<%= @group.name %>">
+          
+          <input type="submit" value="グループを作成">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
