@@ -11,8 +11,7 @@
         
         <%= form_tag("/groups/create") do %>
           <p>グループ名</p>
-          <input name="name" value="<%= @group.name %>">
-          
+          <input name="name" value="<%=@group.group_name %>">
           <input type="submit" value="グループを作成">
         <% end %>
       </div>
