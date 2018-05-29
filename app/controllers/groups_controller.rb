@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   	@group = Group.new(
       name: params[:name]
     )
-    @current_user = @group.owner
+    @current_user == @group.owner
     if @group.save
       flash[:notice] = "グループを作成しました"
       redirect_to("/groups/index")

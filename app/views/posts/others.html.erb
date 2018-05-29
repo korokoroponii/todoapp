@@ -7,7 +7,6 @@
           <%= f.text_field :text %>
           <%= f.submit %>
           <%= f.collection_select :user_id, User.all, :id, :name, :prompt => true %>
-          <%= f.submit "送信" %>
           <input type="submit" value="投稿">
         </div>
       </div>
