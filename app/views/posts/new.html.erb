@@ -1,16 +1,15 @@
 <div class="main posts-new">
   <div class="container">        
     <h1 class="form-heading">投稿する</h1>
-    <%= form_for("/posts/create") do |f| %>
+    <%= form_for @post, :url => {:action => 'create'} do |f| %>
       <div class="form">
         <div class="form-body">
-          <%= f.text_field :text %>
-          <%= f.submit %>
+          <%= f.text_field :content %>
           <%= f.collection_select :user_id, User.all, :id, :name, :prompt => true %>
           <%= f.submit "送信" %>
-          <input type="submit" value="投稿">
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
