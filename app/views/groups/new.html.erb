@@ -9,10 +9,13 @@
           </div>
         <% end %>
         
-        <%= form_tag("/groups/create") do %>
-          <p>グループ名</p>
-          <input name="name" value="<%=@group.group_name %>">
-          <input type="submit" value="グループを作成">
+        <%= form_for @group, :url => {:action => 'create'} do |f| %>
+          <div class="form">
+            <div class="form-body">
+              <%= f.text_area :name %>
+              <%= f.submit "送信" %>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>

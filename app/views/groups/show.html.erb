@@ -3,7 +3,21 @@
     <div class="group">
       <h2><%= @group.group_name %></h2>
      
-      <%= link_to("このグループへ移動", "/users/#{@group.id}/index") %>
+      <%= link_to("このグループへ参加", "/groups/join") %>
     </div>
+  </div>
+</div>
+
+<div class="main posts-new">
+  <div class="container">        
+    <h1 class="form-heading">投稿する</h1>
+    <%= form_for @group, :url => {:action => 'join'} do |f| %>
+      <div class="form">
+        <div class="form-body">
+          <%= f.collection_select :id, Group.all, :id, :name, :prompt => true %>
+          <%= f.submit "送信" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
   def index
+    if @current_user 
+      @posts = Post.where(user_id: @current_user.id)
+    end
+
+
   end
 
   def new
@@ -7,9 +12,13 @@ class PostsController < ApplicationController
   end
 
   def create
+    puts "testmessage"
+    puts params["post"]["content"]
+    puts "testmessage"
+
     @post = Post.new(
-      content: params[:content],
-      user_id: @current_user.id
+      content: params["post"]["content"],
+      user_id: params["post"]["user_id"]
     )
     if @post.save
       flash[:notice] = "投稿を作成しました"
@@ -35,7 +44,6 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    # destroyアクションの中身を作成してください
     @post = Post.find_by(id: params[:id])
     @post.destroy
     

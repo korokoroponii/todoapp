@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "groups/new" => "groups#new"
   post "groups/create" => "groups#create"
   get "groups/:id" => "groups#show"
+  patch "groups/join" => "groups#join"
 
 
   get "posts/index" => "posts#index"
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
   post "logout" => "users#logout"
   get "login" => "users#login_form"
   post "users/create" => "users#create"
-  get "users/:group_id/:id" => "users#show"
+  get "users/:id" => "users#show"
   get "users/:id/edit" => "users#edit"
   post "users/:id/update" => "users#update"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
