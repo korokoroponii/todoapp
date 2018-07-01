@@ -9,12 +9,16 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @group = Group.find_by(id: params[:id])
+
   end
 
   def create
     puts "testmessage"
     puts params["post"]["content"]
     puts "testmessage"
+
+    @group = Group.find_by(id: params[:id])
 
     @post = Post.new(
       content: params["post"]["content"],

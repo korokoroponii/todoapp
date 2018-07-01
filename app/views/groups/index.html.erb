@@ -6,9 +6,13 @@
       <div class="groups-index-item">
   
         <div class="group-right">
-          <%= link_to(params[], "/groups/#{group.id}") %>
+          <%= link_to(group.name, "/groups/#{group.id}") %>
         </div>
       </div>
+    <% end %>
+    <% @current_user.groups.each do |group| %>
+      <p><%= group.id %></p>
+      <p><%= group.name %></p>
     <% end %>
   </div>
 </div>

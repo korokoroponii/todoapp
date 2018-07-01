@@ -14,8 +14,9 @@ class GroupsController < ApplicationController
       name: params["group"]["name"]
     )
 
-    
-    @current_user == @group.owner
+    puts @group.name.class
+
+#    @current_user == @group.owner
     if @group.save
       flash[:notice] = "グループを作成しました"
       redirect_to("/groups/index")
@@ -36,7 +37,19 @@ class GroupsController < ApplicationController
   end
 
   def join
+    @group_user = GroupUser.new(
+      group_id: params["group"]["id"],
+      user_id: @current_user.id
+    )
     puts params["group"]["id"]
+    puts @group_user.group_id
+
+    if @group_user.save
+      flash[:notice] = "グループに参加しました"
+      redirect_to("/groups/index")
+    else
+      render("groups/#{group.id}")
+    end
   end
 
   
