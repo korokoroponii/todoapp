@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
     )
 
     puts @group.name.class
+    #puts params["group"]["name"]
 
 #    @current_user == @group.owner
     if @group.save

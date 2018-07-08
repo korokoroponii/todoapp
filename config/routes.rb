@@ -1,21 +1,24 @@
 Rails.application.routes.draw do
+  root "groups#index"
+
   get "groups/index" => "groups#index"
   get "groups/new" => "groups#new"
   post "groups/create" => "groups#create"
   get "groups/:id" => "groups#show"
   patch "groups/join" => "groups#join"
 
+  resources :groups, shallow: true do
 
-  get "posts/index" => "posts#index"
-  get "posts/new" => "posts#new"
-  post "posts/create" => "posts#create"
-  get "posts/:id" => "posts#show"
-  get "posts/:id/edit" => "posts#edit"
-  post "posts/:id/update" => "posts#update"
-  post "posts/:id/destroy" => "posts#destroy"
+    get "posts/index" => "posts#index"
+    get "posts/new" => "posts#new"
+    post "posts/create" => "posts#create"
+    get "posts/:id" => "posts#show"
+    get "posts/:id/edit" => "posts#edit"
+    post "posts/:id/update" => "posts#update"
+    post "posts/:id/destroy" => "posts#destroy"
+  end
 
-
-  get "users/:group_id/index" => "users#index"
+  get "users/index" => "users#index"
   get "signup" => "users#new"
   post "login" => "users#login"
   post "logout" => "users#logout"

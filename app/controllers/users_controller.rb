@@ -25,7 +25,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
-      redirect_to("/posts/index")
+      redirect_to("/users/index")
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
       @email = params[:email]

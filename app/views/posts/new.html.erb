@@ -4,9 +4,11 @@
     <%= form_for @post, :url => {:action => 'create'} do |f| %>
       <div class="form">
         <div class="form-body">
-
+          
             <%= f.text_area :content %>
+            
             <%= f.collection_select :user_id , User.all, :id, :name, :prompt => true %>
+            
             <%= f.submit "送信" %>
           
         </div>
@@ -19,4 +21,5 @@
       <p><%= group.id %></p>
       <p><%= group.name %></p>
     <% end %>
+
 

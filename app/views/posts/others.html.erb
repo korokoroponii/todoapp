@@ -59,3 +59,6 @@
     else
       render("posts/new")
     end
+
+
+    <%= f.collection_select :user_id , User.all, :id, :name, :prompt => true %>
