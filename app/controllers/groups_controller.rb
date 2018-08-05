@@ -9,9 +9,11 @@ class GroupsController < ApplicationController
     puts "test"
     puts params["group"]["name"]
     puts "test"
+    puts @current_user.id
 
   	@group = Group.new(
       name: params["group"]["name"]
+      created_by: @current_user.id
     )
 
     puts @group.name.class
@@ -38,18 +40,26 @@ class GroupsController < ApplicationController
   end
 
   def join
-    @group_user = GroupUser.new(
-      group_id: params["group"]["id"],
-      user_id: @current_user.id
-    )
-    puts params["group"]["id"]
-    puts @group_user.group_id
 
-    if @group_user.save
-      flash[:notice] = "グループに参加しました"
+      @group_user = GroupUser.new(
+        group_id: params["group"]["id"],
+        user_id: @current_user.id
+      )
+
+    if GroupUser.find_by(group_id: params["group"]["id"], user_id: @current_user.id)
+      #render("groups/#{params["group"]["id"]}")
+      flash[:notice] = "すでにグループに参加しています"
       redirect_to("/groups/index")
     else
-      render("groups/#{group.id}")
+    #puts params["group"]["id"]
+    #puts @group_user.group_id
+    
+      if @group_user.save
+        flash[:notice] = "グループに参加しました"
+        redirect_to("/groups/index")
+      else
+        render("groups/#{group.id}")
+      end
     end
   end
 

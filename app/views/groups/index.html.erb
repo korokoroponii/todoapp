@@ -1,18 +1,23 @@
 <div class="main groups-index">
   <div class="container">
-    <h1 class="groups-heading">グループ一覧</h1>
-    <%= link_to("グループ作成", "/groups/new")%>
-    <% @groups.each do |group| %>
-      <div class="groups-index-item">
-  
-        <div class="group-right">
-          <%= link_to(group.name, "/groups/#{group.id}") %>
+    <% if @current_user %>
+      <h1 class="groups-heading">グループ一覧</h1>
+      <%= link_to("グループ作成", "/groups/new")%>
+      <% @groups.each do |group| %>
+        <div class="groups-index-item">
+    
+          <div class="group-right">
+            <%= link_to(group.name, "/groups/#{group.id}") %>
+          </div>
         </div>
-      </div>
-    <% end %>
-    <% @current_user.groups.each do |group| %>
-      <p><%= group.id %></p>
-      <p><%= group.name %></p>
-    <% end %>
+      <% end %>
+    
+      <% @current_user.groups.each do |group| %>
+        <p><%= group.id %></p>
+        <p><%= group.name %></p>
+      <% end %>
+    <%end%>
+    
+
   </div>
 </div>

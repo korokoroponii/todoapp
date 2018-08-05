@@ -1,11 +1,23 @@
 <div class="main posts-index">
   <div class="container">
-    <% if @posts %>
-    <% @posts.each do |post| %>
-      <div class="posts-index-item">
-        <%= link_to(post.content , "/posts/#{post.id}") %>
-      </div>
-    <% end %>
-    <% end %>
+    <%if @current_user.id == @group.created_by %>
+      <% if @posts %>
+        <% @posts.each do |post| %>
+          <div class="posts-index-item">
+            <%= post.content %>
+            <!--<%= button_to("Complete", "post_hide/#{post[:id]}")%>-->
+          </div>
+        <% end %>
+      <% end %>
+    <%else%>
+      <% if @posts %>
+        <% @posts.each do |post| %>
+          <div class="posts-index-item">
+            <%= post.content %>
+            <%= button_to("Complete", "post_hide/#{post[:id]}")%>
+          </div>
+        <% end %>
+      <% end %>
+    <%end%>
   </div>
 </div>

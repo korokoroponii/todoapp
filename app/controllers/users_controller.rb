@@ -25,7 +25,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
-      redirect_to("/users/index")
+      redirect_to("/groups/index")
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
       @email = params[:email]
@@ -38,7 +38,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     @user = User.new(name: params[:name], email: params[:email], password: params[:password])
     if @user.save
       flash[:notice] = "ユーザー登録が完了しました"
-      redirect_to("/posts/index")
+      redirect_to("/groups/index")
     else
       render("users/new")
     end

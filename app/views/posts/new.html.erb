@@ -7,8 +7,8 @@
           
             <%= f.text_area :content %>
             
-            <%= f.collection_select :user_id , User.all, :id, :name, :prompt => true %>
-            
+            <!-- <%= f.collection_select :user_id ,Group.find(params[:group_id]).users , :id, :name, :prompt => true , :multiple => true %> -->
+            <%= f.select :user_id, Group.find(params[:group_id]).users.map{|o| [o.name, o.id]},{}, {:multiple => true }%>
             <%= f.submit "送信" %>
           
         </div>
