@@ -1,10 +1,22 @@
 class PostsController < ApplicationController
+  before_action :check_admin_user
+  
+  def check_admin_user
+    @group = Group.find_by(id: params[:group_id])
+    if @current_user.id == @group.created_by
+      @admin = true
+    end
+  end  
+
   def index
     if @current_user 
-      @posts = Post.where(user_id: @current_user.id).where(task_done:nil) 
+      if @admin
+        @posts = Post.where(group_id: @group.id) 
+      else
+        @posts = Post.where(user_id: @current_user.id).where(task_done:nil) 
+      end
     end
 
-    @group = Group.find_by(id: params[:id])
   end
 
   def post_hide
@@ -21,11 +33,12 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @group = Group.find_by(id: params[:id])
-
+    
   end
 
   def create
     puts "testmessage"
+    puts params["group_id"]
     puts params["post"]["content"]
     puts "testmessage"
     puts params["post"]["user_id"]
@@ -35,14 +48,16 @@ class PostsController < ApplicationController
 
 
 
-    @group = Group.find_by(id: params[:id])
-
     params["post"]["user_id"].each do |userid|
+      puts userid
+      puts"-------------------"
       @post = Post.new(
         content: params["post"]["content"],
-        user_id: userid.to_i
+        user_id: userid.to_i,
+        group_id: params["group_id"],
       )
       @post.save
+      logger.debug @post.errors.inspect
     end
     
     flash[:notice] = "投稿を作成しました"

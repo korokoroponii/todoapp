@@ -1,5 +1,13 @@
 class GroupsController < ApplicationController
-  
+  before_action :check_admin_user  
+  def check_admin_user
+    @group = Group.find_by(id: params[:id])
+    if @group
+      if @current_user.id == @group.created_by
+       @admin = true
+     end
+   end
+  end  
 
   def new
   	@group = Group.new 
@@ -12,7 +20,7 @@ class GroupsController < ApplicationController
     puts @current_user.id
 
   	@group = Group.new(
-      name: params["group"]["name"]
+      name: params["group"]["name"],
       created_by: @current_user.id
     )
 
@@ -43,7 +51,7 @@ class GroupsController < ApplicationController
 
       @group_user = GroupUser.new(
         group_id: params["group"]["id"],
-        user_id: @current_user.id
+        user_id: @current_user.id,
       )
 
     if GroupUser.find_by(group_id: params["group"]["id"], user_id: @current_user.id)

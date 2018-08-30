@@ -1,23 +1,20 @@
 <div class="main posts-index">
   <div class="container">
-    <%if @current_user.id == @group.created_by %>
       <% if @posts %>
         <% @posts.each do |post| %>
           <div class="posts-index-item">
             <%= post.content %>
-            <!--<%= button_to("Complete", "post_hide/#{post[:id]}")%>-->
-          </div>
+            <% if @admin %>
+              <%= post.user.name %>へのタスク
+              <% if post.task_done == true %>
+                済
+              <% else %>
+                未
+              <% end %>
+            <% else %>
+              <%= button_to("Complete", "post_hide/#{post[:id]}")%>
+            <% end %>
         <% end %>
       <% end %>
-    <%else%>
-      <% if @posts %>
-        <% @posts.each do |post| %>
-          <div class="posts-index-item">
-            <%= post.content %>
-            <%= button_to("Complete", "post_hide/#{post[:id]}")%>
-          </div>
-        <% end %>
-      <% end %>
-    <%end%>
   </div>
 </div>

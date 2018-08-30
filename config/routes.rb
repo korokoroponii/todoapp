@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get "groups/index" => "groups#index"
   get "groups/new" => "groups#new"
   post "groups/create" => "groups#create"
-  get "groups/:id" => "groups#show"
   patch "groups/join" => "groups#join"
+  get "groups/:id" => "groups#show"
+
 
   resources :groups, shallow: true do
 

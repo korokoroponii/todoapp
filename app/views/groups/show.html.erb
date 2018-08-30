@@ -1,13 +1,11 @@
 <div class="main group-show">
   <div class="container">
     <div class="group">
-      <h2><%= @group.name %></h2>
+      <h2><%= @group.name %>の参加メンバー一覧</h2>
      
       <% @group.users.each do |user| %>
-        <p><%= user.id %></p>
-        <p><%= user.name %></p>
+        <p><%= user.id %> : <%= user.name %></p>
       <% end %>
-      <%= link_to("このグループへ参加", "/groups/join") %>
     </div>
   </div>
 </div>
@@ -15,13 +13,15 @@
           <li>
             <%= link_to("投稿一覧", "#{@group.id}/posts/index") %>
           </li>
-          <li>
-            <%= link_to("新規投稿", "#{@group.id}/posts/new") %>
-          </li>
+          <% if @admin %>
+            <li>
+              <%= link_to("新規投稿", "#{@group.id}/posts/new") %>
+            </li>
+          <% end %>
 
 <div class="main posts-new">
   <div class="container">        
-    <h1 class="form-heading">投稿する</h1>
+    <h1 class="form-heading">グループに参加する</h1>
     <%= form_for @group, :url => {:action => 'join'} do |f| %>
       <div class="form">
         <div class="form-body">
