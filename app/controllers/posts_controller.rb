@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :check_admin_user
+  protect_from_forgery except: :post_hide
   
   def check_admin_user
     @group = Group.find_by(id: params[:group_id])
@@ -13,7 +14,7 @@ class PostsController < ApplicationController
       if @admin
         @posts = Post.where(group_id: @group.id) 
       else
-        @posts = Post.where(user_id: @current_user.id).where(task_done:nil) 
+        @posts = Post.where(user_id: @current_user.id).where(task_done:nil).where(group_id: @group.id)
       end
     end
 

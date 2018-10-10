@@ -1,3 +1,48 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.posts-index{
+
+	.container {
+	  background-color: white;
+	  border: solid 1px #ccc;
+	  width: 100%;
+	  min-height: calc(100vh - 64px);
+	  margin: 0 auto;
+	  max-width: 980px;
+	}
+
+	.posts-index-item{
+	    background-color: white;
+	    margin: 0px auto;
+	    padding: 20px;
+	    border-bottom:1px #ccc solid;
+	}
+
+	form.button_to{
+		float:right;	    
+		input{
+			border: solid #ccc;
+		}
+	}
+
+	form.button_to:hover{
+		input{
+			background-color: #dedede;
+			cursor: pointer;
+		}
+	}	    
+
+}
+
+
+
+
+
+
+
+
+select {
+	width: 50px;
+}

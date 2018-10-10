@@ -1,3 +1,79 @@
 // Place all the styles related to the groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.container {
+	background-color: #fafafa;
+}
+
+
+	.groups-index{
+
+		background-color: #f2f2f2;
+
+		h1{
+			margin:0;
+			padding:0;
+			background-color: #fcfcfc;
+			font-size: 1em;
+			padding:20px;
+		}
+
+		.groups-heading {
+		    margin-bottom: 50px;
+	    }
+
+		.group-right > a{
+			padding-left:40px;
+			color: #111;
+			text-decoration: none;
+			position: relative;
+		}
+
+		.group-right > a:before{
+			position: absolute;
+			content: "";
+			left:0px;
+			top:0px;
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background-color: gray;
+		}
+
+		.groups-index-item{
+			padding: 15px;
+			border-bottom: 1px solid #ccc;
+		}
+		.groups-index-item:hover{
+			.group-right > a{
+				color: red;
+			}
+		}	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
